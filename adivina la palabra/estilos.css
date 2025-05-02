@@ -1,0 +1,124 @@
+* {
+  padding: 0rem;
+  margin: 0rem;
+}
+
+@font-face {
+  font-family: "Poppins-Light";
+  src: url(Recursos/Poppins-Light.ttf);
+}
+
+main {
+  height: 100vh;
+  width: 100%;
+  background-color: #b3ecff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .ContenedorPregunta {
+    height: 35rem;
+    width: 35rem;
+    display: flex;
+    justify-content: top;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+
+    header {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      height: 6rem;
+      width: 100%;
+      border-bottom: 1px solid;
+    }
+
+    h2 {
+      font-size: 2rem;
+      padding: 1rem;
+      font-family: "Poppins", serif;
+    }
+
+    .LetraAlrevez {
+      font-size: 3rem;
+      letter-spacing: 15px;
+      font-family: "Poppins", serif;
+      padding: 1rem;
+    }
+
+    .cuerpoarticle {
+      display: flex;
+      justify-content: center;
+      align-items: left;
+      flex-direction: column;
+      height: 100.188px;
+      width: 32rem;
+      gap: 1rem;
+      font-family: "Poppins", serif;
+    }
+
+    .contenedorInput {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .inputIntroducion {
+      height: 4rem;
+      width: 90%;
+
+      font-size: 2rem;
+    }
+
+    .inputIntroducion::placeholder {
+      font-size: 1.3rem;
+      height: 1rem;
+      padding: 1rem;
+    }
+
+    .Tiempo,
+    .PISTA {
+      font-size: 1.2rem;
+    }
+
+    .contenedorBotones {
+      width: 35rem;
+      height: 8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    a {
+      height: 4rem;
+      width: 15.5rem;
+      border: 1px solid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px solid;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: gray;
+    }
+
+    .BotonComprobar {
+      background-color: blue;
+      color: grey;
+    }
+  }
+}
+
+.contenedorletra {
+  height: 150.188px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.RelogIncremento {
+  padding: 12px;
+}
