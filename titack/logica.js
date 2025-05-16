@@ -2,13 +2,18 @@ const $tablero = document.querySelector(".tablero");
 const $celdasTablero = document.querySelectorAll(".cell");
 const $botonReinicio = document.querySelector(".restart-btn");
 const $status = document.querySelector(".game-status");
+let $oponente = document.querySelector(".oponente");
+
 let $spanOponente = document.querySelector(".oponente");
 
 function oponentes($spanOponente) {
   if ($spanOponente.textContent === "X") {
     $spanOponente.textContent = "O";
+        $spanOponente.style.color = "green"
+
   } else {
     $spanOponente.textContent = "X";
+    $spanOponente.style.color = "red"
   }
 
   return $spanOponente;
@@ -20,18 +25,19 @@ function FindelJuego($spanOponente, $tablero) {
     "Juego terminado el ganador es" + $spanOponente.textContent;
   $status.style.color = "red";
   $tablero.style.display = "none";
+  intentos = 0;
 
   for (let index = 0; index < $celdasTablero.length; index++) {
-
-    $celdasTablero[index].textContent = ""
+    $celdasTablero[index].textContent = "";
+    $celdasTablero[index].classList.remove("desativado");
   }
-
 }
-function buscadorGanador($celdasTablero) {
+
+let intentos = 0;
+
+function buscadorGanador($celdasTablero, ItemCelda) {
   let opciones = Array.from($celdasTablero).map((celda) => celda.textContent);
 
-  let resultado = $spanOponente.textContent;
-  // columnas
   for (let index = 0; index < 9; index += 3) {
     if (
       opciones[index] &&
@@ -73,7 +79,31 @@ function buscadorGanador($celdasTablero) {
   ) {
     console.log("hola");
     FindelJuego($spanOponente, $tablero);
+  } else {
   }
+
+  intentos++;
+
+  console.log(intentos);
+}
+
+function empate($celdasTablero) {
+  let opciones = Array.from($celdasTablero).map((celda) => celda.textContent);
+
+  if (intentos >= 9) {
+    alert("juego empatado" + " " + $spanOponente.textContent);
+    $status.textContent =
+      "Juego terminado el ganador es" + $spanOponente.textContent;
+    $status.style.color = "red";
+    $tablero.style.display = "none";
+
+    for (let index = 0; index < $celdasTablero.length; index++) {
+      $celdasTablero[index].textContent = "";
+      $celdasTablero[index].classList.remove("desativado");
+    }
+  }
+
+  console.log(intentos, "holaaas");
 }
 
 $celdasTablero.forEach((ItemCelda) => {
@@ -81,12 +111,21 @@ $celdasTablero.forEach((ItemCelda) => {
     oponentes($spanOponente);
     ItemCelda.innerHTML = $spanOponente.textContent;
 
-    buscadorGanador($celdasTablero);
+    ItemCelda.classList.add("desativado");
+    buscadorGanador($celdasTablero, ItemCelda);
+    empate($celdasTablero);
+  });
+  ItemCelda.addEventListener("  mouseup", function () {
+    empate($celdasTablero);
   });
 });
 
 $botonReinicio.addEventListener("click", function () {
   $tablero.style.display = "grid";
-
- $celdasTablero.textContent = ""
+  intentos = 0;
+  $status.style.color = "black";
+  $oponente.setAttribute("data-status", "after");
+  $status.innerHTML = `Turno actual: Jugador <span class="oponente" data-status>X</span>`;
 });
+
+
