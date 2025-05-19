@@ -8,10 +8,13 @@
   </head>
   <body>
     <main>
-
       <h1>Ta Te Ti</h1>
-      <div class="game-status" >Turno actual: Jugador <span class="oponente" data-status>X</span></div>
-    
+      <div class="game-status" data-class>
+        <p class="Turno">Turno actual: Jugador</p>
+
+        <span class="oponente" data-status>X</span>
+      </div>
+
       <div class="tablero">
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
@@ -23,8 +26,8 @@
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
       </div>
-    
-      <button class="restart-btn">🔄 Reiniciar juego</button>
+
+      <button class="reinicio">🔄 Reiniciar juego</button>
     </main>
 
     <script src="logica.js"></script>

@@ -1,41 +1,36 @@
 const $tablero = document.querySelector(".tablero");
 const $celdasTablero = document.querySelectorAll(".cell");
-const $botonReinicio = document.querySelector(".restart-btn");
+const $botonReinicio = document.querySelector(".reinicio");
 const $status = document.querySelector(".game-status");
-let $oponente = document.querySelector(".oponente");
-
+const $cuerpo = document.querySelector("main");
 let $spanOponente = document.querySelector(".oponente");
+let $Turno = document.querySelector(".Turno");
 
 function oponentes($spanOponente) {
   if ($spanOponente.textContent === "X") {
     $spanOponente.textContent = "O";
-        $spanOponente.style.color = "green"
-
+    $spanOponente.style.color = "green";
   } else {
     $spanOponente.textContent = "X";
-    $spanOponente.style.color = "red"
+    $spanOponente.style.color = "red";
   }
 
   return $spanOponente;
 }
 
-function FindelJuego($spanOponente, $tablero) {
-  alert("juego terminado el ganador es" + " " + $spanOponente.textContent);
-  $status.textContent =
-    "Juego terminado el ganador es" + $spanOponente.textContent;
-  $status.style.color = "red";
-  $tablero.style.display = "none";
-  intentos = 0;
+function FindelJuego($spanOponente) {
+  $Turno.textContent = "El ganador es";
+  alert("juego terminado", $spanOponente.textContent);
 
   for (let index = 0; index < $celdasTablero.length; index++) {
-    $celdasTablero[index].textContent = "";
-    $celdasTablero[index].classList.remove("desativado");
+    $celdasTablero[index].classList.add("desativado");
   }
+  intentos = 0;
 }
 
 let intentos = 0;
 
-function buscadorGanador($celdasTablero, ItemCelda) {
+function buscadorGanador($celdasTablero) {
   let opciones = Array.from($celdasTablero).map((celda) => celda.textContent);
 
   for (let index = 0; index < 9; index += 3) {
@@ -44,6 +39,7 @@ function buscadorGanador($celdasTablero, ItemCelda) {
       opciones[index] === opciones[index + 1] &&
       opciones[index] === opciones[index + 2]
     ) {
+
       FindelJuego($spanOponente, $tablero);
     } else {
     }
@@ -57,7 +53,6 @@ function buscadorGanador($celdasTablero, ItemCelda) {
       opciones[index] === opciones[index + 3] &&
       opciones[index] === opciones[index + 6]
     ) {
-      console.log("hola");
       FindelJuego($spanOponente, $tablero);
     } else {
     }
@@ -88,17 +83,10 @@ function buscadorGanador($celdasTablero, ItemCelda) {
 }
 
 function empate($celdasTablero) {
-  let opciones = Array.from($celdasTablero).map((celda) => celda.textContent);
-
   if (intentos >= 9) {
-    alert("juego empatado" + " " + $spanOponente.textContent);
-    $status.textContent =
-      "Juego terminado el ganador es" + $spanOponente.textContent;
-    $status.style.color = "red";
-    $tablero.style.display = "none";
+    $Turno.textContent = "Empateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!!";
 
     for (let index = 0; index < $celdasTablero.length; index++) {
-      $celdasTablero[index].textContent = "";
       $celdasTablero[index].classList.remove("desativado");
     }
   }
@@ -123,9 +111,12 @@ $celdasTablero.forEach((ItemCelda) => {
 $botonReinicio.addEventListener("click", function () {
   $tablero.style.display = "grid";
   intentos = 0;
-  $status.style.color = "black";
-  $oponente.setAttribute("data-status", "after");
-  $status.innerHTML = `Turno actual: Jugador <span class="oponente" data-status>X</span>`;
+  $Turno.textContent = "Turno actual: Jugador";
+  $spanOponente.textContent = "X";
+  $spanOponente.style.color = "red";
+
+  for (let index = 0; index < $celdasTablero.length; index++) {
+    $celdasTablero[index].textContent = "";
+    $celdasTablero[index].classList.remove("desativado");
+  }
 });
-
-
