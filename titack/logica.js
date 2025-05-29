@@ -84,8 +84,10 @@ function buscadorGanador($celdasTablero) {
 
 function empate($celdasTablero) {
   if (intentos >= 9) {
-    $Turno.textContent = "Empateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!!";
+         alert("hay empate")
 
+    $Turno.textContent = "Empateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!!";
+   $spanOponente.style.color = "white"
     for (let index = 0; index < $celdasTablero.length; index++) {
       $celdasTablero[index].classList.remove("desativado");
     }
